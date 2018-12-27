@@ -41,7 +41,7 @@ import com.facebook.react.bridge.ReactContext;
       WindowManager.LayoutParams params = new WindowManager.LayoutParams(
           WindowManager.LayoutParams.MATCH_PARENT,
           WindowManager.LayoutParams.MATCH_PARENT,
-              Build.VERSION.SDK_INT>Build.VERSION_CODES.O? WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY:WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,
+              Build.VERSION.SDK_INT>=Build.VERSION_CODES.O? WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY:WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,
           WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
               | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
           PixelFormat.TRANSLUCENT);

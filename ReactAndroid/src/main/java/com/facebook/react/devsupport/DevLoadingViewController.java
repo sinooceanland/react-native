@@ -139,7 +139,7 @@ public class DevLoadingViewController {
       WindowManager.LayoutParams params = new WindowManager.LayoutParams(
         WindowManager.LayoutParams.MATCH_PARENT,
         WindowManager.LayoutParams.WRAP_CONTENT,
-              Build.VERSION.SDK_INT>Build.VERSION_CODES.O? WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY:WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,
+              Build.VERSION.SDK_INT>=Build.VERSION_CODES.O? WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY:WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,
         WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
         PixelFormat.TRANSLUCENT);
       params.gravity = Gravity.TOP;
