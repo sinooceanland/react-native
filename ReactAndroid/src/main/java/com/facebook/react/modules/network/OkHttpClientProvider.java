@@ -34,7 +34,7 @@ public class OkHttpClientProvider {
 
   public static OkHttpClient getOkHttpClient() {
     if (sClient == null) {
-      sClient = createClient();
+      sClient = create();
     }
     return sClient;
   }
@@ -45,7 +45,7 @@ public class OkHttpClientProvider {
     sClient = client;
   }
 
-  public static OkHttpClient createClient() {
+  private static OkHttpClient create() {
     // No timeouts by default
     OkHttpClient.Builder client = new OkHttpClient.Builder()
       .connectTimeout(0, TimeUnit.MILLISECONDS)
@@ -54,6 +54,12 @@ public class OkHttpClientProvider {
       .cookieJar(new ReactCookieJarContainer());
 
     return enableTls12OnPreLollipop(client).build();
+  }
+
+  public static OkHttpClient createClient() {
+    // No timeouts by default
+    // 解决无法自定义OkhttpClient的问题
+    return getOkHttpClient();
   }
 
   /*
