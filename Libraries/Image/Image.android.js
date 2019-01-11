@@ -281,7 +281,7 @@ var Image = createReactClass({
 
   render: function() {
     const source = resolveAssetSource(this.props.source);
-    const loadingIndicatorSource = resolveAssetSource(this.props.loadingIndicatorSource);
+    const loadingIndicatorSource = resolveAssetSource(this.props.defaultSource);
 
     // As opposed to the ios version, here we render `null` when there is no source, source.uri
     // or source array.
@@ -312,7 +312,7 @@ var Image = createReactClass({
         shouldNotifyLoadEvents: !!(onLoadStart || onLoad || onLoadEnd || onError),
         src: sources,
         headers: source.headers,
-        loadingIndicatorSrc: loadingIndicatorSource ? loadingIndicatorSource.uri : null,
+        loadingIndicatorSrc: loadingIndicatorSource ? loadingIndicatorSource.uri ? loadingIndicatorSource.uri : loadingIndicatorSource : null,
       });
 
       if (nativeProps.children) {
@@ -363,7 +363,7 @@ var cfg = {
     shouldNotifyLoadEvents: true,
   },
 };
-var RKImage = requireNativeComponent('RCTImageView', Image, cfg);
+var RKImage = requireNativeComponent('CWImageView', Image, cfg);
 var RCTTextInlineImage = requireNativeComponent('RCTTextInlineImage', Image, cfg);
 
 module.exports = Image;
