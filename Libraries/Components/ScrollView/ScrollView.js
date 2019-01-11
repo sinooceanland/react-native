@@ -784,7 +784,7 @@ if (Platform.OS === 'android') {
     }
   };
   AndroidScrollView = requireNativeComponent(
-    'RCTScrollView',
+    'RCTNestedScrollView',
     (ScrollView: ReactClass<any>),
     nativeOnlyProps
   );
