@@ -147,4 +147,27 @@ didReceiveResponse:(NSURLResponse *)response
   [delegate URLRequest:task didCompleteWithError:error];
 }
 
+//取消SSL验证
+- (void) URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable credantial))completionHandler
+{
+
+  NSURLSessionAuthChallengeDisposition disposition = NSURLSessionAuthChallengePerformDefaultHandling;
+  __block NSURLCredential *credential = nil;
+
+  if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust] && [challenge.protectionSpace.host hasSuffix:@"sinoocean-test.com"]) {
+    credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
+    if (credential) {
+      disposition = NSURLSessionAuthChallengeUseCredential;
+    } else {
+      disposition = NSURLSessionAuthChallengePerformDefaultHandling;
+    }
+  } else {
+    disposition = NSURLSessionAuthChallengePerformDefaultHandling;
+  }
+
+  if (completionHandler) {
+    completionHandler(disposition, credential);
+  }
+}
+
 @end
