@@ -154,7 +154,8 @@ didReceiveResponse:(NSURLResponse *)response
   NSURLSessionAuthChallengeDisposition disposition = NSURLSessionAuthChallengePerformDefaultHandling;
   __block NSURLCredential *credential = nil;
 
-  if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust] && [challenge.protectionSpace.host hasSuffix:@"sinoocean-test.com"]) {
+  //if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust] && [challenge.protectionSpace.host hasSuffix:@"sinoocean-test.com"]) {
+  if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
     credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
     if (credential) {
       disposition = NSURLSessionAuthChallengeUseCredential;
